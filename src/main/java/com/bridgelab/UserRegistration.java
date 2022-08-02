@@ -77,7 +77,7 @@ public class UserRegistration {
 
 		boolean isPassword;
 		String passwordRegex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$"; // At least one Special
-																									// Character
+		// Character
 		Pattern patternObject = Pattern.compile(passwordRegex);
 		if (password == null) {
 			isPassword = false;
@@ -118,6 +118,82 @@ public class UserRegistration {
 		checkValidPassword(password);
 
 		scannerObject.close();
+		scannerObject.close();
+		System.out.println("---------------------------------------------------");
+
+		System.out.println("\n         Valid Emails\n");
+
+		email = "abc@yahoo.com";
+		checkValidEmail(email);
+
+		email = "abc-100@yahoo.com";
+		checkValidEmail(email);
+
+		email = "abc.100@yahoo.com";
+		checkValidEmail(email);
+
+		email = "abc111@abc.com";
+		checkValidEmail(email);
+
+		email = "abc-100@abc.net";
+		checkValidEmail(email);
+
+		email = "abc.100@abc.com.au";
+		checkValidEmail(email);
+
+		email = "abc@1.com";
+		checkValidEmail(email);
+
+		email = "abc@gmail.com.com";
+		checkValidEmail(email);
+
+		email = "abc+100@gmail.com";
+		checkValidEmail(email);
+
+		System.out.println("---------------------------------------------------");
+
+		System.out.println("\n         Invalid Emails\n");
+
+		email = "abc";
+		checkValidEmail(email);
+
+		email = "abc@.com.my";
+		checkValidEmail(email);
+
+		email = "abc123@gmail.a";
+		checkValidEmail(email);
+
+		email = "abc123@.com";
+		checkValidEmail(email);
+
+		email = "abc123@.com.com";
+		checkValidEmail(email);
+
+		email = ".abc@abc.com";
+		checkValidEmail(email);
+
+		email = "abc()*@gmail.com";
+		checkValidEmail(email);
+
+		email = "abc@%*.com";
+		checkValidEmail(email);
+
+		email = "abc..2002@gmail.com";
+		checkValidEmail(email);
+
+		email = "abc.@gmail.com";
+		checkValidEmail(email);
+
+		email = "abc@abc@gmail.com";
+		checkValidEmail(email);
+
+		email = "abc@gmail.com.1a";
+		checkValidEmail(email);
+
+		email = "abc@gmail.com.aa.au";
+		checkValidEmail(email);
+
+		System.out.println("---------------------------------------------------");
 
 	}
 
