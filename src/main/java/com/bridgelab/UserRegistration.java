@@ -22,7 +22,7 @@ public class UserRegistration {
 		return Validation;
 	}
 
-	public boolean ValidateEmail(String email) {
+	public static boolean ValidateEmail(String email) {
 		boolean Validation = email
 				.matches("^[a-zA-Z]+[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$");
 		if (Validation) {
