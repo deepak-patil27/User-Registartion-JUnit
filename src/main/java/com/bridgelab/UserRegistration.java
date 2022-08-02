@@ -56,6 +56,23 @@ public class UserRegistration {
 			System.out.println(email + " is an Invalid Email address");
 	}
 
+	public static void checkValidMobileNumber(String mobileNumber) {
+
+		boolean isMobileNumber;
+		String mobileRegex = "^[0-9]{2}\\s{1}[0-9]{10}$";
+		Pattern patternObject = Pattern.compile(mobileRegex);
+		if (mobileNumber == null) {
+			isMobileNumber = false;
+		}
+		Matcher matcherObject = patternObject.matcher(mobileNumber);
+		isMobileNumber = matcherObject.matches();
+
+		if (isMobileNumber)
+			System.out.println(mobileNumber + " is a Valid  Mobile Number\n");
+		else
+			System.out.println(mobileNumber + " is an Invalid Mobile Number");
+	}
+
 	public static void main(String[] args) {
 
 		System.out.println("           Welcome To User Registration");
@@ -63,16 +80,20 @@ public class UserRegistration {
 		Scanner scannerObject = new Scanner(System.in);
 
 		System.out.println("Enter Your First Name");
-		String firstName = scannerObject.next();
+		String firstName = scannerObject.nextLine();
 		checkValidFirstName(firstName);
 
 		System.out.println("Enter Your Last Name");
-		String lastName = scannerObject.next();
+		String lastName = scannerObject.nextLine();
 		checkValidLastName(lastName);
 
 		System.out.println("Enter Your Email Address");
-		String email = scannerObject.next();
+		String email = scannerObject.nextLine();
 		checkValidEmail(email);
+
+		System.out.println("Enter Your Mobile Number:");
+		String mobileNumber = scannerObject.nextLine();
+		checkValidMobileNumber(mobileNumber);
 
 		scannerObject.close();
 
