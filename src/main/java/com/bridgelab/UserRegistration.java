@@ -1,86 +1,82 @@
 package com.bridgelab;
 
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.regex.*;
+
+interface userCheck {
+	public String format(String name);
+}
 
 public class UserRegistration {
-	static Scanner scan = new Scanner(System.in);
 
-	public boolean FirstName() throws InvalidUserInputException {
-		System.out.println("Enter First Name : ");
-		String name = scan.next();
-		String regex = "[A-Z]{1}[a-z]{2,}";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher ma = pattern.matcher(name);
+	public static void main(String[] args) {
+		// Lambda expression for Check first Name
+		userCheck obj = (name) -> {
+			String firstNameRegex = "[A-Z]{1}[a-z]{2,}";
+			Pattern patternObject = Pattern.compile(firstNameRegex);
+			Matcher matcherObject = patternObject.matcher(name);
+			if (matcherObject.matches()) {
+				System.out.println("Valid First Name:");
+			} else {
+				System.err.println("Invalid First Name:");
+			}
+			return name;
+		};
+		System.out.println(obj.format("Deepak"));
 
-		if (ma.matches() == true) {
-			System.out.println("Entered First Name : " + name + " is " + ma.matches());
-			return ma.matches();
-		}
-		// if not match throw exception
-		throw new InvalidUserInputException();
+		// Lambda expression for Check last Name
+		userCheck lastName = (name) -> {
+			String firstNameRegex = "[A-Z]{1}[a-z]{2,}";
+			Pattern patternObject = Pattern.compile(firstNameRegex);
+			Matcher matcherObject = patternObject.matcher(name);
+			if (matcherObject.matches()) {
+				System.out.println("Valid Last Name:");
+			} else {
+				System.err.println("Invalid Last Name:");
+			}
+			return name;
+		};
+		System.out.println(lastName.format("Patil"));
+
+		// Lambda expression for Check Email Name
+		userCheck emailId = (email) -> {
+			String emailRegex = "^[a-zA-Z]+[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$";
+			Pattern patternObject = Pattern.compile(emailRegex);
+			Matcher matcherObject = patternObject.matcher(email);
+			if (matcherObject.matches()) {
+				System.out.println("Valid Email Address:");
+			} else {
+				System.out.println("Invalid Email Address:");
+			}
+			return email;
+		};
+		System.out.println(emailId.format("deepak.123@gmail.com"));
+
+		// Lambda expression for Check Mobile Number
+		userCheck mobileNumber = (mobileNo) -> {
+			String mobileRegex = "^[0-9]{2}\\s{1}[0-9]{10}$";
+			Pattern patternObject = Pattern.compile(mobileRegex);
+			Matcher matcherObject = patternObject.matcher(mobileNo);
+			if (matcherObject.matches()) {
+				System.out.println("Valid  Mobile Number:");
+			} else {
+				System.out.println("Invalid Mobile Number");
+			}
+			return mobileNo;
+		};
+		System.out.println(mobileNumber.format("91 9874563210"));
+
+		// Lambda expression for Check Password
+		userCheck Password = (password) -> {
+			String passwordRegex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$";
+			Pattern patternObject = Pattern.compile(passwordRegex);
+			Matcher matcherObject = patternObject.matcher(password);
+			if (matcherObject.matches()) {
+				System.out.println("Valid Password:");
+			} else {
+				System.out.println("Invalid Password");
+			}
+			return password;
+		};
+		System.out.println(Password.format("Deepak@123"));
 	}
-
-	public boolean LastName() throws InvalidUserInputException {
-		System.out.println("Enter Last Name : ");
-		String lastname = scan.next();
-		String regex = "[A-Z]{1}[a-z]{2,}";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher ma = pattern.matcher(lastname);
-
-		if (ma.matches() == true) {
-			System.out.println("Entered Last Name : " + lastname + " is " + ma.matches());
-			return ma.matches();
-		}
-		// if not match throw exception
-		throw new InvalidUserInputException();
-	}
-
-	public static boolean Email() throws InvalidUserInputException {
-		System.out.println("Enter Email ID: ");
-		String email = scan.next();
-		String regex = "^[a-zA-Z]+[a-zA-Z0-9]*[- . + _]?[a-zA-Z0-9]+[@]{1}[a-z0-9]+[.]{1}[a-z]+[.]?[a-z]+$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher ma = pattern.matcher(email);
-
-		if (ma.matches() == true) {
-			System.out.println("Entered Email Id : " + email + " is " + ma.matches());
-			return ma.matches();
-		}
-		// if not match throw exception
-		throw new InvalidUserInputException();
-	}
-
-	public boolean MobileNumber() throws InvalidUserInputException {
-		System.out.println("Enter Mobile Number : ");
-		String mobile = scan.next();
-		String regex = "(91)?[7-9][0-9]{9}";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher ma = pattern.matcher(mobile);
-
-		if (ma.matches() == true) {
-			System.out.println("Entered Mobile Number : " + mobile + " is " + ma.matches());
-			return ma.matches();
-		}
-		// if not match throw exception
-		throw new InvalidUserInputException();
-
-	}
-
-	public boolean Password() throws InvalidUserInputException {
-		System.out.println("Enter Password : ");
-		String password = scan.next();
-		String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).{8,}$";
-		Pattern pattern = Pattern.compile(regex);
-		Matcher ma = pattern.matcher(password);
-
-		if (ma.matches() == true) {
-			System.out.println("Entered Password : " + password + " is " + ma.matches());
-			return ma.matches();
-		}
-		// if not match throw exception
-		throw new InvalidUserInputException();
-	}
-
 }
